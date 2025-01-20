@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: shop-service
+  profiles:
+    active: ${ACTIVE_PROFILE:default}
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    liquibase-schema: ${LIQUIBASE_SCHEMA:liquibase-schema}
+
+server:
+  port: ${SERVER_PORT:8080}

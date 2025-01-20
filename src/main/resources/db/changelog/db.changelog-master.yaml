@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/migration/categories_table.xml
+  - include:
+      file: db/migration/product_images_table.xml
+  - include:
+      file: db/migration/products_table.xml
+  - include:
+      file: db/migration/add_constraints_to_product_images.xml
+  - include:
+      file: db/migration/best_products_table.xml
