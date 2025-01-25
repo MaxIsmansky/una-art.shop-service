@@ -2,6 +2,7 @@ package com.rapidsystems.shop_service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
 
@@ -14,8 +15,8 @@ import java.util.UUID;
 public class Photo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "uuid")
+    @UuidGenerator
+    @Column(name = "uuid", updatable = false, nullable = false)
     private UUID uuid;
 
     @Column(name = "url", nullable = false)
@@ -24,7 +25,7 @@ public class Photo {
     @Column(name = "is_preview", nullable = false)
     private Boolean isPreview;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 

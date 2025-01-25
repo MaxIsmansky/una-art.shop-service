@@ -1,4 +1,4 @@
-package com.rapidsystems.shop_service.service;
+package com.rapidsystems.shop_service.service.product.data;
 
 import com.rapidsystems.shop_service.dto.ProductDto;
 import com.rapidsystems.shop_service.model.Photo;
@@ -45,7 +45,7 @@ public class MockProductService implements ProductService {
     }
 
     @Override
-    public ProductDto saveProduct(ProductDto productDto) {
+    public Product saveProduct(ProductDto productDto) {
         return null;
     }
 

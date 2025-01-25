@@ -1,7 +1,9 @@
 package com.rapidsystems.shop_service.controllers;
 
+import com.rapidsystems.shop_service.dto.ProductDto;
+import com.rapidsystems.shop_service.mapper.ProductMapper;
 import com.rapidsystems.shop_service.model.Product;
-import com.rapidsystems.shop_service.service.ProductService;
+import com.rapidsystems.shop_service.service.product.data.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,18 +22,21 @@ public class ProductController {
     public static final String URL = "/api/v1/shop";
 
     private final ProductService productService;
+    private final ProductMapper productMapper;
 
     @GetMapping("/{category}/{id}")
-    public ResponseEntity<Product> productDetails(@PathVariable String category,
+    public ResponseEntity<ProductDto> productDetails(@PathVariable String category,
                                                   @PathVariable UUID id) {
         Product product = productService.findProduct(id);
-        return ResponseEntity.ok(product);
+        ProductDto productDto = productMapper.toDto(product);
+        return ResponseEntity.ok(productDto);
     }
 
     @GetMapping("/{category}")
-    public ResponseEntity<List<Product>> categoryProducts(@PathVariable String category) {
+    public ResponseEntity<List<ProductDto>> categoryProducts(@PathVariable String category) {
         List<Product> productList = productService.findAllInCategory(category);
-        return ResponseEntity.ok(productList);
+        List<ProductDto> productDtoList = productMapper.toDtoList(productList);
+        return ResponseEntity.ok(productDtoList);
     }
 
 }

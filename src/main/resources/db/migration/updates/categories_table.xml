@@ -1,0 +1,14 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="add-category-paintings" author="m.ismanskiy">
+        <insert tableName="categories">
+            <column name="uuid" value="a17b563c-33e0-45c1-9956-78bb815f6775"/>
+            <column name="name" value="paintings"/>
+            <column name="description" value="Категория для картин и художественных произведений."/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

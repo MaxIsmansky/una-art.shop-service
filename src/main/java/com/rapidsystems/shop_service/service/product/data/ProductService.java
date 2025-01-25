@@ -1,6 +1,7 @@
-package com.rapidsystems.shop_service.service;
+package com.rapidsystems.shop_service.service.product.data;
 
 import com.rapidsystems.shop_service.dto.ProductDto;
+import com.rapidsystems.shop_service.dto.ProductResponse;
 import com.rapidsystems.shop_service.model.Product;
 import org.springframework.context.annotation.Profile;
 
@@ -13,7 +14,7 @@ public interface ProductService {
 
     List<Product> findAllInCategory(String category);
 
-    ProductDto saveProduct(ProductDto productDto);
+    Product saveProduct(ProductDto productDto);
 
     boolean deleteProduct(UUID uuid);
 

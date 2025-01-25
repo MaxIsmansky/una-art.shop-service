@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,7 +43,7 @@ public class Product {
     private Integer maxAmount;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Photo> photoList;
+    private List<Photo> photoList = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "preview_photo_id")

@@ -2,8 +2,10 @@ package com.rapidsystems.shop_service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 @Getter
@@ -14,8 +16,9 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @UuidGenerator
+    @Column(name = "uuid", updatable = false, nullable = false)
+    private UUID uuid;
 
     @Column(nullable = false, unique = true)
     private String name;

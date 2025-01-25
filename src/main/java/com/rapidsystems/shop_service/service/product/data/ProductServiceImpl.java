@@ -1,10 +1,12 @@
-package com.rapidsystems.shop_service.service;
+package com.rapidsystems.shop_service.service.product.data;
 
 import com.rapidsystems.shop_service.dao.ProductDetailsDao;
 import com.rapidsystems.shop_service.dto.ProductDto;
 import com.rapidsystems.shop_service.mapper.ProductMapper;
-import com.rapidsystems.shop_service.mapper.ProductMapperImpl;
+import com.rapidsystems.shop_service.mapper.ProductResponseMapper;
+import com.rapidsystems.shop_service.model.Category;
 import com.rapidsystems.shop_service.model.Product;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductDetailsDao productDetailsDao;
     private final ProductMapper productMapper;
+    private final ProductResponseMapper productResponseMapper;
+    private final EntityManager entityManager;
 
     @Override
     public Product findProduct(UUID id) {
@@ -31,10 +35,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto saveProduct(ProductDto productDto) {
+    public Product saveProduct(ProductDto productDto) {
         Product product = productMapper.toEntity(productDto);
+        Category category = entityManager.getReference(Category.class, productDto.getCategoryUuid());
+        product.setCategory(category);
         Product productEntity = productDetailsDao.save(product);
-        return productDto;
+        return productEntity;
     }
 
     @Override
