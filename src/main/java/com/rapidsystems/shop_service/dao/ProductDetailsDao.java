@@ -2,6 +2,7 @@ package com.rapidsystems.shop_service.dao;
 
 import com.rapidsystems.shop_service.model.Product;
 import com.rapidsystems.shop_service.repository.ProductDetailsRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ProductDetailsDao {
 
     public Product findById(final UUID id) {
         return productDetailsRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(String.format("Product with id %s not found!", id)));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Product with id %s not found!", id)));
     }
 
     public List<Product> findAllInCategory(String categoryName) {

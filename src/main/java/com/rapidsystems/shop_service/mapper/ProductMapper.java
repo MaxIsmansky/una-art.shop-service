@@ -7,15 +7,21 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
-//    @Mapping(target = "category", source = "category", qualifiedByName = "categoryMapping")
+    @Mapping(source = "photoDtoList", target = "photoList")
     Product toEntity(ProductDto productDto);
 
-//    @Named(value = "categoryMapping")
-//    default Category toEntity(String category) {
-//        return Category.builder().build();
-//    };
+    @Mapping(source = "photoList", target = "photoDtoList")
+    ProductDto toDto(Product product);
+
+    @Mapping(source = "photoDtoList", target = "photoList")
+    List<Product> toEntityList(List<ProductDto> productDtoList);
+
+    @Mapping(source = "photoList", target = "photoDtoList")
+    List<ProductDto> toDtoList(List<Product> productList);
 
 }

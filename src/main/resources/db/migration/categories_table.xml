@@ -5,7 +5,7 @@
 
     <changeSet id="categories-table" author="m.ismanskiy">
         <createTable tableName="categories">
-            <column name="id" type="SERIAL">
+            <column name="uuid" type="UUID">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="VARCHAR(255)">
